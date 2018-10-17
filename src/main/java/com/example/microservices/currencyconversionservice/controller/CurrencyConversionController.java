@@ -2,6 +2,7 @@ package com.example.microservices.currencyconversionservice.controller;
 
 import com.example.microservices.currencyconversionservice.model.CurrencyConversionBean;
 import com.example.microservices.currencyconversionservice.proxy.CurrencyExchangeServiceProxy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,11 +12,8 @@ import java.math.BigDecimal;
 @RestController
 public class CurrencyConversionController {
 
+    @Autowired
     private CurrencyExchangeServiceProxy currencyExchangeServiceProxy;
-
-    public CurrencyConversionController(CurrencyExchangeServiceProxy currencyExchangeServiceProxy) {
-        this.currencyExchangeServiceProxy = currencyExchangeServiceProxy;
-    }
 
     @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversionBean convertCurrency(
